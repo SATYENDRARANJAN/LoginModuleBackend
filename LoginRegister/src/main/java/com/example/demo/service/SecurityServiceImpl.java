@@ -40,11 +40,11 @@ public class SecurityServiceImpl implements SecurityService{
 
 	@Override
 	@Transactional(readOnly=true)
-	public void autoLogin(String userName, String password  ) { 
+	public void autoLogin(String userName, String password) { 
 		UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
 		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
 				 new UsernamePasswordAuthenticationToken(userName, password, userDetails.getAuthorities());
-		
+		System.out.println("authorities : "+userDetails.getAuthorities());
 		
 		Authentication auth =authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 		
